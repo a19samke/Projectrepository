@@ -12,6 +12,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,7 +26,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String TAG ="MAINACTIVITY";
+    private static final String TAG = "MAINACTIVITY";
     ArrayList<News> items;
     ArrayAdapter<News> adapter;
 
@@ -33,18 +37,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         items = new ArrayList<>();
-        adapter = new ArrayAdapter<>(this,R.layout.second,items);
+        adapter = new ArrayAdapter<>(this, R.layout.second, items);
         ListView view = findViewById(R.id.list_view);
         view.setAdapter(adapter);
         view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 News news = items.get(position);
-                String Messeg =" Id for the muntion is, " + news.getID()+
+                String Messeg = " Id for the muntion is, " + news.getID() +
                         " then we have the mountion name, " + news.getName() +
                         " After that we have where the mountion is locatied, " + news.getLocation() +
-                        "." +news.getAuxdata() +
-                        "and the prise is "+ news.getCost();
+                        "." + news.getAuxdata() +
+                        "and the prise is " + news.getCost();
                 Toast.makeText(MainActivity.this, Messeg, Toast.LENGTH_LONG).show();
             }
 
@@ -94,7 +98,30 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String json) {
-            Log.d("TAG", json);
+
+            try {
+                items.clear();
+                JSONArray jsonArray = new JSONArray(json);
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    String ID = jsonObject.getString("ID");
+                    String name = jsonObject.getString("name");
+                    String type = jsonObject.getString("type");
+                    String company = jsonObject.getString("company");
+                    String location = jsonObject.getString("location");
+                    int cost = jsonObject.getInt("cost");
+                    String auxdata = jsonObject.getString("auxdata");
+                    News news = new News(ID, name, type, company,location, cost,auxdata);
+                    items.add(news);
+
+                }
+                adapter.notifyDataSetChanged();
+
+            } catch (JSONException e) {
+                Log.d(TAG, "KUNDE inte parsa" + json + "\n do to caption" + e);
+            }
+
+
         }
     }
 }

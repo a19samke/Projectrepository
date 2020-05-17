@@ -19,76 +19,39 @@ public class News {
         this.auxdata = auxdata;
     }
 
-    public News(String id, String type, String name, String location, String auxdata, int cost) {
-
+    public News(String id) {
     }
 
     public String getID() {
         return ID;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getType() {
         return type;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public String getCompany() {
         return company;
-    }
-
-    public void setCompany(String company) {
-        this.company = company;
     }
 
     public String getLocation() {
         return location;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
     public int getCost() {
         return cost;
-    }
-
-    public void setCost(int cost) {
-        this.cost = cost;
     }
 
     public String getAuxdata() {
         return auxdata;
     }
 
-    public void setAuxdata(String auxdata) {
-        this.auxdata = auxdata;
-    }
-
     @Override
     public String toString() {
-        return "News{" +
-                "ID='" + ID + '\'' +
-                ", name='" + name + '\'' +
-                ", type='" + type + '\'' +
-                ", company='" + company + '\'' +
-                ", location='" + location + '\'' +
-                ", cost=" + cost +
-                ", auxdata='" + auxdata + '\'' +
-                '}';
+        return "ID"+ "\n" + ID + "\n" + "Name" + "\n"+  name + "\n" + "Size" + "\n"  + auxdata + "\n" +" Location " + "\n" +location;
     }
 }
