@@ -19,6 +19,10 @@ public class News {
         this.auxdata = auxdata;
     }
 
+    public News(String id, String type, String name, String location, String auxdata, int cost) {
+
+    }
+
     public String getID() {
         return ID;
     }
