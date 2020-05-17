@@ -6,6 +6,11 @@ import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,16 +19,38 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG ="MAINACTIVITY";
+    ArrayList<News> items;
+    ArrayAdapter<News> adapter;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
 
+        items = new ArrayList<>();
+        adapter = new ArrayAdapter<>(this,R.layout.second,items);
+        ListView view = findViewById(R.id.list_view);
+        view.setAdapter(adapter);
+        view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                News news = items.get(position);
+                String Messeg =" Id for the muntion is, " + news.getID()+
+                        " then we have the mountion name, " + news.getName() +
+                        " After that we have where the mountion is locatied, " + news.getLocation() +
+                        "." +news.getAuxdata() +
+                        "and the prise is "+ news.getCost();
+                Toast.makeText(MainActivity.this, Messeg, Toast.LENGTH_LONG).show();
+            }
+
+        });
+        new JsonTask().execute("https://wwwlab.iit.his.se/brom/kurser/mobilprog/dbservice/admin/getdataasjson.php?type=a19samke");
+    }
 
     @SuppressLint("StaticFieldLeak")
     private class JsonTask extends AsyncTask<String, String, String> {
@@ -70,6 +97,4 @@ public class MainActivity extends AppCompatActivity {
             Log.d("TAG", json);
         }
     }
-
-
 }
