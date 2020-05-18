@@ -3,12 +3,14 @@ package com.example.projectrepository;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -25,10 +27,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
+
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MAINACTIVITY";
     ArrayList<News> items;
     ArrayAdapter<News> adapter;
+    private Button button;
 
 
     @Override
@@ -47,9 +51,10 @@ public class MainActivity extends AppCompatActivity {
                 String Messeg = " Id for the muntion is, " + news.getID() +
                         " then we have the mountion name, " + news.getName() +
                         " After that we have where the mountion is locatied, " + news.getLocation() +
-                        "." + news.getAuxdata() +
                         "and the prise is " + news.getCost();
+
                 Toast.makeText(MainActivity.this, Messeg, Toast.LENGTH_LONG).show();
+
             }
 
         });
@@ -103,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
                 items.clear();
                 JSONArray jsonArray = new JSONArray(json);
                 for (int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                   /* JSONObject jsonObject = jsonArray.getJSONObject(i);
                     String ID = jsonObject.getString("ID");
                     String name = jsonObject.getString("name");
                     String type = jsonObject.getString("type");
@@ -111,9 +116,8 @@ public class MainActivity extends AppCompatActivity {
                     String location = jsonObject.getString("location");
                     int cost = jsonObject.getInt("cost");
                     String auxdata = jsonObject.getString("auxdata");
-                    News news = new News(ID, name, type, company,location, cost,auxdata);
-                    items.add(news);
-
+                    News news = new News(ID, name, type, company, location, cost, auxdata);
+                    items.add(news);*/
                 }
                 adapter.notifyDataSetChanged();
 

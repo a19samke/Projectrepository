@@ -9,17 +9,12 @@ public class News {
     private int cost;
     private String auxdata;
 
-    public News(String ID, String name, String type, String company, String location, int cost, String auxdata) {
-        this.ID = ID;
-        this.name = name;
-        this.type = type;
-        this.company = company;
-        this.location = location;
-        this.cost = cost;
-        this.auxdata = auxdata;
-    }
+
 
     public News(String id) {
+    }
+
+    public News(String id, String name, String type, String company, String location, int cost, String auxdata) {
     }
 
     public String getID() {
@@ -46,12 +41,11 @@ public class News {
         return cost;
     }
 
-    public String getAuxdata() {
-        return auxdata;
-    }
+
 
     @Override
     public String toString() {
-        return "ID"+ "\n" + ID + "\n" + "Name" + "\n"+  name + "\n" + "Size" + "\n"  + auxdata + "\n" +" Location " + "\n" +location;
+        return "ID"+ "\n" + ID + "\n" + "Name" + "\n" +  name + "\n" + "type" + "\n"  + type +
+                "\n" +" company " + "\n" +company + "\n" + "location"+ "\n"+ location+ "\n" + "cost" + "\n" + cost + "\n" + "auxdata" + "\n" + auxdata;
     }
 }
