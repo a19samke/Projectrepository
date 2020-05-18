@@ -10,11 +10,14 @@ public class News {
     private String auxdata;
 
 
-
-    public News(String id) {
-    }
-
-    public News(String id, String name, String type, String company, String location, int cost, String auxdata) {
+    public News(String ID, String name, String type, String company, String location, int cost, String auxdata) {
+        this.ID = ID;
+        this.name = name;
+        this.type = type;
+        this.company = company;
+        this.location = location;
+        this.cost = cost;
+        this.auxdata = auxdata;
     }
 
     public String getID() {
