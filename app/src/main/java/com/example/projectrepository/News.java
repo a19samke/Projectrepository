@@ -6,18 +6,19 @@ public class News {
     private String type;
     private String company;
     private String location;
-    private int cost;
     private String auxdata;
+    private int cost;
 
 
-    public News(String ID, String name, String type, String company, String location, int cost, String auxdata) {
+    public News(String ID, String name, String type, String company, String location, String auxdata, int cost) {
         this.ID = ID;
         this.name = name;
         this.type = type;
         this.company = company;
         this.location = location;
-        this.cost = cost;
         this.auxdata = auxdata;
+        this.cost = cost;
+
     }
 
     public String getID() {
@@ -40,6 +41,10 @@ public class News {
         return location;
     }
 
+    public String getAuxdata() {
+        return auxdata;
+    }
+
     public int getCost() {
         return cost;
     }
@@ -48,7 +53,6 @@ public class News {
 
     @Override
     public String toString() {
-        return "ID"+ "\n" + ID + "\n" + "Name" + "\n" +  name + "\n" + "type" + "\n"  + type +
-                "\n" +" company " + "\n" +company + "\n" + "location"+ "\n"+ location+ "\n" + "cost" + "\n" + cost + "\n" + "auxdata" + "\n" + auxdata;
+        return "ID"+ "\n" + ID + "\n" + "Name" + "\n" +  name + "\n" + "type" + "\n"  + type + "\n" +" company " + "\n" +company + "\n" + "location"+ "\n"+ location+ "\n" + "auxdata" + "\n" + auxdata + "\n" + "cost" + "\n" + cost;
     }
 }

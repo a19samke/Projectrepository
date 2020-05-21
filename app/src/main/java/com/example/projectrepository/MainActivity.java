@@ -8,10 +8,12 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -32,18 +34,16 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MAINACTIVITY";
     ArrayList<News> items;
     ArrayAdapter<News> adapter;
-    private Button button;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         items = new ArrayList<>();
-        adapter = new ArrayAdapter<>(this, R.layout.second, items);
+        adapter = new ArrayAdapter<>( this,R.layout.second,items );
         ListView view = findViewById(R.id.list_view);
         view.setAdapter(adapter);
+
         view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -52,14 +52,12 @@ public class MainActivity extends AppCompatActivity {
                         " then we have the mountion name, " + news.getName() +
                         " After that we have where the mountion is locatied, " + news.getLocation() +
                         "and the prise is " + news.getCost();
-
-                Toast.makeText(MainActivity.this, Messeg, Toast.LENGTH_LONG).show();
-
+                Toast.makeText(MainActivity.this, Messeg, Toast.LENGTH_SHORT).show();
             }
-
         });
         new JsonTask().execute("https://wwwlab.iit.his.se/brom/kurser/mobilprog/dbservice/admin/getdataasjson.php?type=a19samke");
     }
+
 
     @SuppressLint("StaticFieldLeak")
     private class JsonTask extends AsyncTask<String, String, String> {
@@ -107,19 +105,25 @@ public class MainActivity extends AppCompatActivity {
             try {
                 items.clear();
                 JSONArray jsonArray = new JSONArray(json);
-                for (int i = 0; i < jsonArray.length(); i++) {
-                   /* JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                for (int i = 0; i <jsonArray.length(); i++) {
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+
                     String ID = jsonObject.getString("ID");
                     String name = jsonObject.getString("name");
                     String type = jsonObject.getString("type");
                     String company = jsonObject.getString("company");
                     String location = jsonObject.getString("location");
-                    int cost = jsonObject.getInt("cost");
                     String auxdata = jsonObject.getString("auxdata");
-                    News news = new News(ID, name, type, company, location, cost, auxdata);
-                    items.add(news);*/
+                    int cost = jsonObject.getInt("cost");
+                    News news = new News( ID, name, type, company, location, auxdata, cost);
+
+                    items.add(news);
                 }
+                
                 adapter.notifyDataSetChanged();
+
 
             } catch (JSONException e) {
                 Log.d(TAG, "KUNDE inte parsa" + json + "\n do to caption" + e);
