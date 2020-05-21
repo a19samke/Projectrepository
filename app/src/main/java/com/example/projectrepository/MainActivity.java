@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         ListView view = findViewById(R.id.list_view);
         view.setAdapter(adapter);
 
+
         view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -52,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
                         " then we have the mountion name, " + news.getName() +
                         " After that we have where the mountion is locatied, " + news.getLocation() +
                         "and the prise is " + news.getCost();
+
+
                 Toast.makeText(MainActivity.this, Messeg, Toast.LENGTH_SHORT).show();
             }
         });
@@ -105,7 +108,6 @@ public class MainActivity extends AppCompatActivity {
             try {
                 items.clear();
                 JSONArray jsonArray = new JSONArray(json);
-
                 for (int i = 0; i <jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
 
@@ -121,14 +123,13 @@ public class MainActivity extends AppCompatActivity {
 
                     items.add(news);
                 }
-                
+
                 adapter.notifyDataSetChanged();
 
 
             } catch (JSONException e) {
                 Log.d(TAG, "KUNDE inte parsa" + json + "\n do to caption" + e);
             }
-
 
         }
     }
