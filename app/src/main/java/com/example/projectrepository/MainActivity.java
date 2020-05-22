@@ -34,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MAINACTIVITY";
     ArrayList<News> items;
     ArrayAdapter<News> adapter;
+    ArrayList<String> arrayList;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +47,20 @@ public class MainActivity extends AppCompatActivity {
         ListView view = findViewById(R.id.list_view);
         view.setAdapter(adapter);
 
+        final ArrayList<String>arrayList = new ArrayList<>( );
+        arrayList.add( "About" );
+        arrayList.add( "News" );
+        arrayList.add( "Morning" );
+        arrayList.add( "Replay" );
+
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item,arrayList );
+        view.setAdapter( arrayAdapter );
 
         view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 News news = items.get(position);
-                String Messeg = " Id for the muntion is, " + news.getID() +
+                String Messeg = "Id for the muntion is, " + news.getID() +
                         " then we have the mountion name, " + news.getName() +
                         " After that we have where the mountion is locatied, " + news.getLocation() +
                         "and the prise is " + news.getCost();
@@ -107,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
 
             try {
                 items.clear();
-                JSONArray jsonArray = new JSONArray(json);
+                JSONArray jsonArray = new JSONArray();
                 for (int i = 0; i <jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
 
