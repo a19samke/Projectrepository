@@ -51,7 +51,9 @@ public class MainActivity extends AppCompatActivity {
                         " then we have the mountion name, " + news.getName() +
                         " After that we have where the mountion is locatied, " + news.getLocation() +
                         "and the prise is " + news.getCost();
-                Toast.makeText(MainActivity.this, Messeg, Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, Messeg,Toast.LENGTH_SHORT).show();
+
+
             }
         });
         new JsonTask().execute("https://wwwlab.iit.his.se/brom/kurser/mobilprog/dbservice/admin/getdataasjson.php?type=a19samke");
