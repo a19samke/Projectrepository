@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
 
             try {
                 items.clear();
-                JSONArray jsonArray = new JSONArray();
+                JSONArray jsonArray = new JSONArray(json);
                 for (int i = 0; i <jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
 
