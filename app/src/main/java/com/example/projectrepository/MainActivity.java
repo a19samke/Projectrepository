@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MAINACTIVITY";
     ArrayList<News> items;
     ArrayAdapter<News> adapter;
-    ArrayList<String> arrayList;
+
 
 
 
@@ -47,14 +47,6 @@ public class MainActivity extends AppCompatActivity {
         ListView view = findViewById(R.id.list_view);
         view.setAdapter(adapter);
 
-        final ArrayList<String>arrayList = new ArrayList<>( );
-        arrayList.add( "About" );
-        arrayList.add( "News" );
-        arrayList.add( "Morning" );
-        arrayList.add( "Replay" );
-
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item,arrayList );
-        view.setAdapter( arrayAdapter );
 
         view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -118,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
             try {
                 items.clear();
-                JSONArray jsonArray = new JSONArray(json);
+                JSONArray jsonArray = new JSONArray();
                 for (int i = 0; i <jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
 
