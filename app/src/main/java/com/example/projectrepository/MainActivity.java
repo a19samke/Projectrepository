@@ -35,9 +35,6 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<News> items;
     ArrayAdapter<News> adapter;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,8 +43,6 @@ public class MainActivity extends AppCompatActivity {
         adapter = new ArrayAdapter<>( this,R.layout.second,items );
         ListView view = findViewById(R.id.list_view);
         view.setAdapter(adapter);
-
-
         view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -56,15 +51,11 @@ public class MainActivity extends AppCompatActivity {
                         " then we have the mountion name, " + news.getName() +
                         " After that we have where the mountion is locatied, " + news.getLocation() +
                         "and the prise is " + news.getCost();
-
-
                 Toast.makeText(MainActivity.this, Messeg, Toast.LENGTH_SHORT).show();
             }
         });
         new JsonTask().execute("https://wwwlab.iit.his.se/brom/kurser/mobilprog/dbservice/admin/getdataasjson.php?type=a19samke");
     }
-
-
     @SuppressLint("StaticFieldLeak")
     private class JsonTask extends AsyncTask<String, String, String> {
 
@@ -110,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
 
             try {
                 items.clear();
-                JSONArray jsonArray = new JSONArray();
+                JSONArray jsonArray = new JSONArray(json);
                 for (int i = 0; i <jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
 
