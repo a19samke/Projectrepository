@@ -52,6 +52,6 @@ public class News {
 
     @Override
     public String toString() {
-        return  ID + "\n"  +  name + "\n" + "type" + "\n"  + type + "\n" + location+ "\n" + "auxdata" + "\n" + auxdata + "\n" + "cost" + "\n" + cost;
+        return  ID + "\n"  +  name + "\n" + "Type" + "\n"  + type + "\n" + location+ "\n" + "\n" + "Read:) Auxdata" + "\n" + auxdata + "\n" + "\n" + "Cost" + "\n" + cost;
     }
 }
