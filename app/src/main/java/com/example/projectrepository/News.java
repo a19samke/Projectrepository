@@ -2,7 +2,7 @@ package com.example.projectrepository;
 
 public class News {
     private String ID;
-    private String name;
+   private String name;
     private String type;
     private String company;
     private String location;
@@ -18,7 +18,6 @@ public class News {
         this.location = location;
         this.auxdata = auxdata;
         this.cost = cost;
-
     }
 
     public String getID() {
@@ -53,6 +52,6 @@ public class News {
 
     @Override
     public String toString() {
-        return "ID"+ "\n" + ID + "\n" + "Name" + "\n" +  name + "\n" + "type" + "\n"  + type + "\n" +" company " + "\n" +company + "\n" + "location"+ "\n"+ location+ "\n" + "auxdata" + "\n" + auxdata + "\n" + "cost" + "\n" + cost;
+        return  ID + "\n"  +  name + "\n" + "type" + "\n"  + type + "\n" + location+ "\n" + "auxdata" + "\n" + auxdata + "\n" + "cost" + "\n" + cost;
     }
 }
